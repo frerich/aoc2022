@@ -44,7 +44,30 @@ defmodule Day2 do
   end
 end
 
-input = File.read!("input.txt") |> String.split("\n", trim: true)
-IO.inspect(part_1: Day2.part1(input))
-IO.inspect(part_2: Day2.part2(input))
+ExUnit.start()
 
+defmodule Tests do
+  use ExUnit.Case
+
+  describe "part1" do
+    test "example" do
+      assert Day2.part1(["A Y", "B X", "C Z"]) == 15
+    end
+
+    test "input" do
+      input = File.read!("input.txt") |> String.split("\n", trim: true)
+      assert Day2.part1(input) == 11767
+    end
+  end
+
+  describe "part2" do
+    test "example" do
+      assert Day2.part2(["A Y", "B X", "C Z"]) == 12
+    end
+
+    test "input" do
+      input = File.read!("input.txt") |> String.split("\n", trim: true)
+      assert Day2.part2(input) == 13886
+    end
+  end
+end
