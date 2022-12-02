@@ -7,9 +7,8 @@ defmodule Day2 do
   @paper_score 2
   @scissors_score 3
 
-  def part1(input) do
-    input
-    |> String.split("\n")
+  def part1(lines) do
+    lines
     |> Enum.map(fn line ->
       case String.split(line) do
         ["A", "X"] -> @draw + @rock_score
@@ -26,9 +25,8 @@ defmodule Day2 do
     |> Enum.sum()
   end
 
-  def part2(input) do
-    input
-    |> String.split("\n")
+  def part2(lines) do
+    lines
     |> Enum.map(fn line ->
       case String.split(line) do
         ["A", "X"] -> @loss + @scissors_score
@@ -46,7 +44,7 @@ defmodule Day2 do
   end
 end
 
-input = File.read!("input.txt") |> String.trim()
+input = File.read!("input.txt") |> String.split("\n", trim: true)
 IO.inspect(part_1: Day2.part1(input))
 IO.inspect(part_2: Day2.part2(input))
 
