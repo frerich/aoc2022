@@ -4,10 +4,10 @@ defmodule Day9 do
     |> String.split("\n", trim: true)
     |> Enum.flat_map(fn line ->
       case String.split(line, " ") do
-        ["L", n] -> replicate({-1, 0}, String.to_integer(n))
-        ["R", n] -> replicate({1, 0}, String.to_integer(n))
-        ["U", n] -> replicate({0, -1}, String.to_integer(n))
-        ["D", n] -> replicate({0, 1}, String.to_integer(n))
+        ["L", n] -> List.duplicate({-1, 0}, String.to_integer(n))
+        ["R", n] -> List.duplicate({1, 0}, String.to_integer(n))
+        ["U", n] -> List.duplicate({0, -1}, String.to_integer(n))
+        ["D", n] -> List.duplicate({0, 1}, String.to_integer(n))
       end
     end)
   end
@@ -23,7 +23,7 @@ defmodule Day9 do
   def part_two(input) do
     input
     |> parse()
-    |> Enum.scan(replicate({0, 0}, 10), &drag_rope/2)
+    |> Enum.scan(List.duplicate({0, 0}, 10), &drag_rope/2)
     |> Enum.uniq_by(fn rope -> Enum.at(rope, -1) end)
     |> Enum.count()
   end
@@ -48,6 +48,4 @@ defmodule Day9 do
   defp signum(0), do: 0
   defp signum(x) when x < 0, do: -1
   defp signum(x) when x > 0, do: 1
-
-  def replicate(x, n), do: Stream.cycle([x]) |> Enum.take(n)
 end
