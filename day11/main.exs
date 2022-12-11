@@ -67,7 +67,7 @@ defmodule Day11 do
         {monkeys, num_items_inspected}
       end)
 
-    [first, second] = num_items_inspected |> Map.values() |> Enum.sort(:desc) |> Enum.take(2)
+    [first, second | _] = num_items_inspected |> Map.values() |> Enum.sort(:desc)
     first * second
   end
 
